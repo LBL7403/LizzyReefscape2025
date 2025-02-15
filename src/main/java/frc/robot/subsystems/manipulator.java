@@ -1,7 +1,9 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
+///*
+/// 
+/* 
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,15 +21,15 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 
 
-public class Lift extends SubsystemBase {
+public class manipulator extends SubsystemBase {
 
-  private static final int motorLift1ID = 19;
+  private static final int motorLift1ID = 0;
 
 
   private SparkMax m_leadMotor = new SparkMax(motorLift1ID, MotorType.kBrushless);
 
   private SparkClosedLoopController maxPid = m_leadMotor.getClosedLoopController();
-  private final RelativeEncoder liftEncoder;
+  private final RelativeEncoder intakeEncoder;
   private SparkMaxConfig config1 = new SparkMaxConfig();
   private double range=0.2;
  
@@ -36,10 +38,10 @@ public class Lift extends SubsystemBase {
 
 
   
-  /** Creates a new Lift. */
-  public Lift() {
+  /** Creates a new Lift. 
+  public intake() {
 
-    liftEncoder = m_leadMotor.getEncoder();
+    intakeEncoder = m_leadMotor.getEncoder();
   
 
   
@@ -81,13 +83,13 @@ m_leadMotor.configure(config1, ResetMode.kResetSafeParameters,PersistMode.kNoPer
 
 
 
-  public double getLiftEncoderPostion(){
+  public double getintakeEncoderPosition(){
 
-    return liftEncoder.getPosition();
+    return intakeEncoder.getPosition();
   }
 
-  public void resetLiftEncoder() {
-    liftEncoder.setPosition(0);
+  public void resetintakeEncoder() {
+    intakeEncoder.setPosition(0);
   }
 
 
@@ -100,7 +102,8 @@ m_leadMotor.configure(config1, ResetMode.kResetSafeParameters,PersistMode.kNoPer
   public void periodic() {
     // This method will be called once per scheduler run
 
-    SmartDashboard.putNumber("Encoder", liftEncoder.getPosition());
+    SmartDashboard.putNumber("Encoder", intakeEncoder.getPosition());
     SmartDashboard.putNumber("Motor speed", m_leadMotor.getAppliedOutput());
   }
 }
+*/

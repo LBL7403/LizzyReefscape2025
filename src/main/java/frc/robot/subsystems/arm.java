@@ -19,14 +19,14 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 
 
-public class arm extends SubsystemBase {
+public class Arm extends SubsystemBase {
 
   private static final int motorLift1ID = 0;
 
 
-  private SparkMax m_leadMotor = new SparkMax(motorLift1ID, MotorType.kBrushless);
+  private SparkMax m_leadMotor1 = new SparkMax(motorLift1ID, MotorType.kBrushless);
 
-  private SparkClosedLoopController maxPid = m_leadMotor.getClosedLoopController();
+  private SparkClosedLoopController maxPid = m_leadMotor1.getClosedLoopController();
   private final RelativeEncoder armEncoder;
   private SparkMaxConfig config1 = new SparkMaxConfig();
   private double range=0.2;
@@ -37,9 +37,9 @@ public class arm extends SubsystemBase {
 
   
   /** Creates a new Lift. */
-  public arm() {
+  public Arm() {
 
-    armEncoder = m_leadMotor.getEncoder();
+    armEncoder = m_leadMotor1.getEncoder();
   
 
   
@@ -58,7 +58,7 @@ config1.closedLoop
 
 
     
-m_leadMotor.configure(config1, ResetMode.kResetSafeParameters,PersistMode.kNoPersistParameters);
+m_leadMotor1.configure(config1, ResetMode.kResetSafeParameters,PersistMode.kNoPersistParameters);
 
 
 
@@ -69,7 +69,7 @@ m_leadMotor.configure(config1, ResetMode.kResetSafeParameters,PersistMode.kNoPer
 
   public void run(double speed){
 
-    m_leadMotor.set(speed);
+    m_leadMotor1.set(speed);
 
   }
 
@@ -90,10 +90,9 @@ m_leadMotor.configure(config1, ResetMode.kResetSafeParameters,PersistMode.kNoPer
     armEncoder.setPosition(0);
   }
 
-
   public void stop(){
 
-    m_leadMotor.stopMotor();
+    m_leadMotor1.stopMotor();
   }
 
   @Override
@@ -101,6 +100,6 @@ m_leadMotor.configure(config1, ResetMode.kResetSafeParameters,PersistMode.kNoPer
     // This method will be called once per scheduler run
 
     SmartDashboard.putNumber("Encoder", armEncoder.getPosition());
-    SmartDashboard.putNumber("Motor speed", m_leadMotor.getAppliedOutput());
+    SmartDashboard.putNumber("Motor speed", m_leadMotor1.getAppliedOutput());
   }
 }

@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 
 
 import frc.robot.generated.TunerConstants;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Lift;
 
@@ -51,7 +52,7 @@ public class RobotContainer {
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
     public final Lift m_Lift = new Lift();
-
+    public final Arm m_arm = new Arm();
 
 
     public RobotContainer() {
@@ -96,11 +97,41 @@ public class RobotContainer {
 
     position2Button.onTrue(new LifttoPos(m_Lift,11,0.2));
 
-    JoystickButton position0Button = new JoystickButton(joystick, PS5Controller.Button.kTriangle.value);
+    JoystickButton position0Button = new JoystickButton(joystick, PS5Controller.Button.kPS.value);
 
     position0Button.onTrue(new LifttoZero(m_Lift));
 
+    JoystickButton coralHandlerButton = new JoystickButton(joystick, PS5Controller.Button.kTriangle.value);
+    coralHandlerButton.onTrue(new coralHandler(m_arm, 3000000, 1));
+
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /*joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
         joystick.b().whileTrue(drivetrain.applyRequest(() ->
